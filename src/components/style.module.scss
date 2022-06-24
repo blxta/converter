@@ -1,0 +1,21 @@
+$active-color: green;
+
+button {
+  font-size: larger;
+}
+
+.active__button {
+  background-color: $active-color;
+  font-size: larger;
+}
+
+.price_current {
+  background-color: $active-color;
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+}

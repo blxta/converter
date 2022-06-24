@@ -9,9 +9,11 @@ cultures = {
     'wheat' : 'https://markets.businessinsider.com/commodities/wheat-price',
      'corn' : 'https://markets.businessinsider.com/commodities/corn-price',
 }
+ 
+path = 'C:\\Users\\blxta\\projects\\converter\\src\\components\\culturesArray.js'
 
-with open('output_sublime.jsx', 'w') as f: #create file
-    f.write("const element_" + cul + " = <div class=\"" + cul + "\">")
+with open(path, 'w') as f: #create file
+    f.write('const culturesArray = [')
     f.close()    
 
 
@@ -25,8 +27,10 @@ for cul in cultures:
 
     for data in allx:
         ally = data.find('span', class_="price-section__current-value") 
-        with open('output_sublime.jsx', 'a') as f:
-            f.write("const element_" + cul + " = <div class=\"" + cul + "\">")
-            f.write(ally.get_text())
-            f.write("</div>\n")
+        with open(path, 'a') as f:
+            f.write("[\"" + cul +"\"," + ally.get_text() + "],\n")
             f.close()
+
+with open(path, 'a') as f: #end of file file
+    f.write('] \n export {culturesArray};')
+    f.close()    
