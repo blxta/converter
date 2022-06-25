@@ -3,30 +3,28 @@ import { useState } from "react";
 import style from "./navigation.module.scss";
 import DisplayRate from "./DisplayRate";
 
-const menus = ["біржі", "україна", "майбутнє"];
+const menus = ["біржі", "майбутнє"];
 
 const Navigation = () => {
   const [activeNavItem, setActiveNavItem] = useState(0);
   return (
     <>
-      <nav>
-        <ul className={style.menu}>
+      <div className={style.ulx}>
+        <nav className={style.nav}>
           {menus.map((item, index) => (
-            <li>
-              <a
-                key={index}
-                href="#"
-                onClick={() => setActiveNavItem(index)}
-                className={
-                  index === activeNavItem ? style.activeItem : style.active_Item
-                }
-              >
-                {item}
-              </a>
-            </li>
+            <a
+              key={index}
+              href="#"
+              onClick={() => setActiveNavItem(index)}
+              className={
+                index === activeNavItem ? style.activeItem : style.active_Item
+              }
+            >
+              {item}
+            </a>
           ))}
-        </ul>
-      </nav>
+        </nav>
+      </div>
       {activeNavItem === 0 && <DisplayRate></DisplayRate>}
     </>
   );

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300&display=swap");
 
 $active-color: green;
 
@@ -11,36 +11,39 @@ button {
   margin-inline: 5px;
   padding: 10px;
   margin: 10px;
-  text-transform: uppercase;
+  margin-top: 35px;
+  //text-transform: uppercase;
+
   font-family: "Montserrat", sans-serif;
   font-weight: bold;
+  font-size: 20px;
 }
 
 .active__button {
   border-color: white;
   background-color: green;
   color: white;
-  //font-size: larger;
 }
 
 .price_current {
-  background-color: green;
-  border-color: white;
-  color: white;
+  //background-color: green;
+  border-color: rgb(88, 88, 88);
+  color: rgb(0, 0, 0);
   border-style: solid;
-
-  border-radius: 1ex;
+  //border-radius: 1ex;
   text-align: center;
-  font-size: 30px;
+  font-size: 40px;
   padding: 5px;
+  font-family: "Signika Negative", sans-serif;
 }
 
 .price_div_current {
   display: flex;
   justify-content: center;
 
-  background-color: bisque;
+  background-color: rgba(235, 234, 232, 0.521);
   border-radius: 1em;
+  margin-top: 5ex;
   padding: 10px;
 }
 
