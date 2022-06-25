@@ -4,6 +4,14 @@ import os,sys
 import subprocess
 import glob
 from os import path
+import cgitb
+cgitb.enable()
+ 
+import sys
+import codecs
+ 
+sys.stdout = codecs.getwriter("utf-8")(sys.stdout.detach())
+
 
 cultures = {
     'wheat' : 'https://markets.businessinsider.com/commodities/wheat-price',

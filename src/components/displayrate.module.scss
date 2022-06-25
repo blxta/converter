@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
+
+$active-color: green;
+
+button {
+  border-style: solid;
+  border-radius: 1em;
+  border-color: green;
+  background-color: white;
+  color: black;
+  margin-inline: 5px;
+  padding: 10px;
+  margin: 10px;
+  text-transform: uppercase;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+}
+
+.active__button {
+  border-color: white;
+  background-color: green;
+  color: white;
+  //font-size: larger;
+}
+
+.price_current {
+  background-color: green;
+  border-color: white;
+  color: white;
+  border-style: solid;
+
+  border-radius: 1ex;
+  text-align: center;
+  font-size: 30px;
+  padding: 5px;
+}
+
+.price_div_current {
+  display: flex;
+  justify-content: center;
+
+  background-color: bisque;
+  border-radius: 1em;
+  padding: 10px;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+}

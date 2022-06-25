@@ -1,4 +1,5 @@
-const culturesArray = [["wheat",362.5],
-["corn",7.51],
-] 
- export {culturesArray};
+const culturesArray = [
+  ["пшениця", 358.75],
+  ["кукуруза", 7.5],
+];
+export { culturesArray };
