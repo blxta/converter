@@ -6,9 +6,15 @@ import Contact from "./components/Contacts";
 function App() {
   return (
     <div className={style.App}>
-      <Header></Header>
-      <Navigation></Navigation>
-      <Contact></Contact>
+      <header>
+        <Header></Header>
+      </header>
+      <section className={style.content}>
+        <Navigation></Navigation>
+      </section>
+      <footer className={style.footer}>
+        <Contact></Contact>
+      </footer>
     </div>
   );
 }

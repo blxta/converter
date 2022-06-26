@@ -10,24 +10,22 @@ const DisplayRate = () => {
 
   return (
     <>
-      <section>
-        <div className={style.content}>
-          {cultures.map((culture, index) => (
-            <button
-              key={index}
-              onClick={() => setActiveCulture(index)}
-              className={index === activeCulture ? style.active__button : ""}
-            >
-              {culture[0]}
-            </button>
-          ))}
-        </div>
-        <div className={style.price_div_current}>
-          <span className={style.price_current}>
-            {cultures[activeCulture][1]}$
-          </span>
-        </div>
-      </section>
+      <div className={style.content}>
+        {cultures.map((culture, index) => (
+          <button
+            key={index}
+            onClick={() => setActiveCulture(index)}
+            className={index === activeCulture ? style.active__button : ""}
+          >
+            {culture[0]}
+          </button>
+        ))}
+      </div>
+      <div className={style.price_div_current}>
+        <span className={style.price_current}>
+          {cultures[activeCulture][1]}$
+        </span>
+      </div>
     </>
   );
 };
