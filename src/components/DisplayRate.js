@@ -1,45 +1,47 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { culturesArray } from "./culturesArray";
+
 import style from "./displayrate.module.scss";
 import { db } from "../firebase/config";
 import { collection, getDocs } from "firebase/firestore";
-import { async } from "@firebase/util";
+
 //const cultures = culturesArray;
 
 const DisplayRate = () => {
   const [activeCulture, setActiveCulture] = useState(0);
-  const [cultures, setCultures] = useState(null);
+  const [cultures, setCultures] = useState([]);
 
-  async function f() {
-    const querySnapshot = await getDocs(collection(db, "cultures"));
-    const cul = [];
-    querySnapshot.forEach((doc) => {
-      cul.push(doc.data());
-    });
-    setCultures(cul);
-    console.log(cultures);
-  }
+  useEffect(() => {
+    const fetch = async () => {
+      const querySnapshot = await getDocs(collection(db, "cultures"));
+      const cul = [];
+      querySnapshot.forEach((doc) => {
+        cul.push(doc.data());
+      });
+      setCultures(cul);
+    };
+    fetch();
+    console.log("effect over");
+  }, []);
 
   return (
     <>
-      <div>
-        <button onClick={() => f()}>click</button>
-      </div>
+      {console.log(cultures)}
+      {console.log("cultures ")}
       <div className={style.content}>
-        {cultures.map((cul, index) => (
+        {cultures.map((culx, index) => (
           <button
             key={index}
             onClick={() => setActiveCulture(index)}
             className={index === activeCulture ? style.active__button : ""}
           >
-            {cul[0]}
+            {culx.name}
           </button>
         ))}
       </div>
       <div className={style.price_div_current}>
         <span className={style.price_current}>
-          {cultures[activeCulture][1]}$
+          {cultures.length === 0 ? "" : cultures[activeCulture].cost}$
         </span>
       </div>
     </>
