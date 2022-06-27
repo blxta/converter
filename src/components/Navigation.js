@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import style from "./navigation.module.scss";
 import DisplayRate from "./DisplayRate";
@@ -7,6 +7,8 @@ const menus = ["біржі", "майбутнє"];
 
 const Navigation = () => {
   const [activeNavItem, setActiveNavItem] = useState(0);
+
+  useEffect(() => console.log("useeffect navigation "), []);
   return (
     <>
       <div className={style.ulx}>
@@ -25,7 +27,9 @@ const Navigation = () => {
           ))}
         </nav>
       </div>
+      {console.log("call display")}
       {activeNavItem === 0 && <DisplayRate></DisplayRate>}
+      {/* {activeNavItem ? console.log(activeNavItem) : console.log(activeNavItem)} */}
     </>
   );
 };
