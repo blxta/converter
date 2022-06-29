@@ -1,14 +1,15 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { culturesArray } from "./culturesArray";
+import { Link } from "react-router-dom";
+import DisplayRate from "../../components/DisplayRate";
 import style from "./displayrate.module.scss";
-import { db } from "../firebase/config";
+import { db } from "../../firebase/config";
 import { collection, getDocs } from "firebase/firestore";
-import { async } from "@firebase/util";
+
 //const cultures = culturesArray;
 
-const Fire = () => {
-  const [activeCulture, setActiveCulture] = useState(2);
+const PageMarketUkraine = () => {
+  const [activeCulture, setActiveCulture] = useState(0);
   const [cultures, setCultures] = useState([]);
 
   useEffect(() => {
@@ -21,22 +22,15 @@ const Fire = () => {
       setCultures(cul);
     };
     fetch();
-    console.log("data fetch");
+    console.log("effect over");
   }, []);
 
   return (
     <>
-      {console.log("render component")}
-      {console.log(cultures)}
-      <div>
-        {cultures.map((x) => (
-          <li>
-            {x.name},{x.cost}
-          </li>
-        ))}
-      </div>
+      <DisplayRate market="marketUkraine"></DisplayRate>
+      <div>таблиця хтмл</div>
     </>
   );
 };
 
-export default Fire;
+export default PageMarketUkraine;
