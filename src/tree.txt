@@ -1,0 +1,9 @@
+root-
+    -appjs- //
+          -navigation- //
+                     -PageMarketWorld/          /pagemarketworld/:culture
+                                     -displayRate-
+                     -PageMarketUkraine/        /pagemarketukraine/:culture
+                                       -displayRate-
+                     -PageNews
+                     -PageTaxes

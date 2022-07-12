@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300&display=swap");
+
+.price_current {
+  border-color: rgb(88, 88, 88);
+  color: rgb(0, 0, 0);
+  border-style: solid;
+  text-align: center;
+  font-size: 40px;
+  padding: 5px;
+  font-family: "Signika Negative", sans-serif;
+}
+
+.price_div_current {
+  display: flex;
+  justify-content: center;
+
+  background-color: rgba(235, 234, 232, 0.521);
+  border-radius: 1em;
+  margin-top: 3ex;
+  padding: 10px;
+}

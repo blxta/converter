@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+import DisplayPrice from "./DisplayPrice";
 import style from "./displayrate.module.scss";
 import { db } from "../firebase/config";
 import { collection, getDocs } from "firebase/firestore";
@@ -27,11 +28,11 @@ const DisplayRate = (props) => {
 
   const marketType = () => (
     <>
-      <div className={style.price_div_current}>
-        <span className={style.price_current}>
-          {cultures.length === 0 ? "" : cultures[activeCulture].price}$
-        </span>
-      </div>
+      {cultures.length === 0 ? (
+        ""
+      ) : (
+        <DisplayPrice price={cultures[activeCulture].price} />
+      )}
     </>
   );
 
@@ -46,10 +47,10 @@ const DisplayRate = (props) => {
       <div className={style.content_display_rate}>
         <nav className={style.nav_display_rate}>
           {cultures.map((culx, index) => (
-            <a
-              //   to={`${culx.name}`}
+            <Link
+              //to={`${props.market}/${culx.culture}`}
+              to={"#"}
               key={index}
-              href="#"
               onClick={() => setActiveCulture(index)}
               className={
                 index === activeCulture
@@ -58,7 +59,7 @@ const DisplayRate = (props) => {
               }
             >
               {culx.culture}
-            </a>
+            </Link>
           ))}
         </nav>
       </div>

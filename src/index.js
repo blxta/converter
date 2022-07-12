@@ -4,13 +4,13 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Router, Routes } from "react-router-dom";
-
+import PageMarketUkraine from "./pages/pageMarketUkraine/PageMarketUkraine";
+import PageNews from "./pages/pageNews/PageNews";
+import PageTaxes from "./pages/pageTaxes/PageTaxes";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App />} />
-    </Routes>
+    <App />
   </BrowserRouter>
 );
 

@@ -16,8 +16,8 @@ $active-color: green;
   border-radius: 1em;
 }
 $border_nActive: 2px;
-$border_Active: $border_nActive * 5;
-$padding_Active: 5px;
+$border_Active: $border_nActive * 4;
+$padding_Active: 7px;
 
 .display_buttonActive {
   display: inline-block;
@@ -33,7 +33,7 @@ $padding_Active: 5px;
   border-left-color: rgb(0, 87, 184);
   border-bottom-color: rgb(255, 215, 0);
   border-right-color: rgb(255, 215, 0);
-  color: black;
+  color: rgb(54, 54, 54);
 
   text-align: center;
   text-decoration: none;
@@ -54,31 +54,12 @@ $padding_Active: 5px;
 
   border-color: green;
   background-color: white;
-  color: rgb(54, 54, 54);
+
+  color: black;
 
   text-align: center;
   text-decoration: none;
   font-family: "Montserrat", sans-serif;
   font-weight: bold;
   font-size: 20px;
-}
-
-.price_current {
-  border-color: rgb(88, 88, 88);
-  color: rgb(0, 0, 0);
-  border-style: solid;
-  text-align: center;
-  font-size: 40px;
-  padding: 5px;
-  font-family: "Signika Negative", sans-serif;
-}
-
-.price_div_current {
-  display: flex;
-  justify-content: center;
-
-  background-color: rgba(235, 234, 232, 0.521);
-  border-radius: 1em;
-  margin-top: 3ex;
-  padding: 10px;
 }

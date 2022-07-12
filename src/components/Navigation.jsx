@@ -2,12 +2,17 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import style from "./navigation.module.scss";
 import DisplayRate from "./DisplayRate";
-import { Link } from "react-router-dom";
+import { Link, Routes, Route } from "react-router-dom";
 import PageMarketWorld from "../pages/pageMarketWorld/PageMarketWorld";
 import PageMarketUkraine from "../pages/pageMarketUkraine/PageMarketUkraine";
 import PageNews from "../pages/pageNews/PageNews";
 import PageTaxes from "../pages/pageTaxes/PageTaxes";
-const menus = ["біржі", "україна", "новини", "податки/облік"];
+const menus = [
+  ["біржі", "marketWorld"],
+  ["україна", "marketUkraine"],
+  ["новини", "news"],
+  ["податки", "taxes"],
+];
 
 const Navigation = () => {
   const [activeNavItem, setActiveNavItem] = useState(0);
@@ -30,9 +35,9 @@ const Navigation = () => {
       <div className={style.content_navigator}>
         <nav className={style.nav_navigation}>
           {menus.map((item, index) => (
-            <a
+            <Link
               key={index}
-              href="#"
+              to={`${item[1]}`}
               onClick={() => setActiveNavItem(index)}
               className={
                 index === activeNavItem
@@ -40,8 +45,8 @@ const Navigation = () => {
                   : style.nav_non_activeItem
               }
             >
-              {item}
-            </a>
+              {item[0]}
+            </Link>
           ))}
         </nav>
       </div>

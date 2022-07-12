@@ -9,26 +9,12 @@ import { collection, getDocs } from "firebase/firestore";
 //const cultures = culturesArray;
 
 const PageMarketUkraine = () => {
-  const [activeCulture, setActiveCulture] = useState(0);
-  const [cultures, setCultures] = useState([]);
-
-  useEffect(() => {
-    const fetch = async () => {
-      const querySnapshot = await getDocs(collection(db, "cultures"));
-      const cul = [];
-      querySnapshot.forEach((doc) => {
-        cul.push(doc.data());
-      });
-      setCultures(cul);
-    };
-    fetch();
-    console.log("effect over");
-  }, []);
-
   return (
     <>
       <DisplayRate market="marketUkraine"></DisplayRate>
-      <div>таблиця хтмл</div>
+
+      <div>таблиця прєдложеній хтмл</div>
+      <div> фільтр область (вся україна), культури прєдложенія</div>
     </>
   );
 };
