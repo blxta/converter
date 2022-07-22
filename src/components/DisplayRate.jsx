@@ -7,8 +7,6 @@ import style from "./displayrate.module.scss";
 import { db } from "../firebase/config";
 import { collection, getDocs } from "firebase/firestore";
 
-//const cultures = culturesArray;
-//добавить юз мемо шоб дохуя раз не обновлять компонент
 const DisplayRate = (props) => {
   const [activeCulture, setActiveCulture] = useState(0);
   const [cultures, setCultures] = useState([]);
@@ -23,7 +21,6 @@ const DisplayRate = (props) => {
       setCultures(cul);
     };
     fetch();
-    // console.log(props.fire);
   }, []);
 
   const marketType = () => (
@@ -38,12 +35,6 @@ const DisplayRate = (props) => {
 
   return (
     <>
-      {
-        //console.log(cultures)
-      }
-      {
-        //console.log("cultures ")
-      }
       <div className={style.content_display_rate}>
         <nav className={style.nav_display_rate}>
           {cultures.map((culx, index) => (

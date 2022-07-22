@@ -1,0 +1,14 @@
+{
+	"corn" : [
+	{
+	"insider" : "https://markets.businessinsider.com/commodities/corn-price"
+	}]
+
+	"wheat": [
+{ 
+"insider" : "https://markets.businessinsider.com/commodities/wheat-price"
+}
+
+	]
+}
+}
