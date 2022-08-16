@@ -1,30 +1,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300&display=swap");
 
-// .price_current {
-//   border-color: rgb(88, 88, 88);
-//   color: rgb(0, 0, 0);
-//   border-style: solid;
-//   text-align: center;
-//   font-size: 40px;
-//   padding: 5px;
 //   font-family: "Signika Negative", sans-serif;
-// }
 
-// .price_div_current {
-//   display: flex;
-//   justify-content: center;
+.table {
+  display: table;
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
 
-//   background-color: rgba(235, 234, 232, 0.521);
-//   border-radius: 1em;
-//   margin-top: 3ex;
-//   padding: 10px;
-// }
-
-.div_display {
-  background-color: rgba(235, 234, 232, 0.521);
+  font-family: "Signika Negative", sans-serif;
+  font-size: 20px;
 }
 
-.li_display {
-  display: flex;
-  justify-content: center;
+tr {
+  border-bottom: 1px solid rgba(54, 129, 60, 0.527);
+}
+
+.price {
+  padding-inline: 30px;
+  border-radius: 5px;
+
+  color: rgb(51, 51, 51);
+  background-color: rgba(172, 224, 162, 0.507);
 }

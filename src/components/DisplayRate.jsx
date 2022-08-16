@@ -5,33 +5,34 @@ import { Link } from "react-router-dom";
 import DisplayPrice from "./DisplayPrice";
 import style from "./displayrate.module.scss";
 import { db } from "../firebase/config";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, onSnapshot, doc } from "firebase/firestore";
 
 const DisplayRate = (props) => {
   const [activeCulture, setActiveCulture] = useState(0);
-  const [cultures, setCultures] = useState([]);
+  const [cultures, setCultures] = useState(["", ""]);
 
   useEffect(() => {
-    const fetch = async () => {
+    const fetchCulturesName = async () => {
       const querySnapshot = await getDocs(collection(db, props.market));
       const cul = [];
       querySnapshot.forEach((doc) => {
-        cul.push(doc.data());
+        let id = doc.id;
+        let ua = doc.data().ua;
+        cul.push([id, ua]);
       });
       setCultures(cul);
     };
-    fetch();
-  }, []);
+    fetchCulturesName();
+  }, [activeCulture]);
 
-  const marketType = () => (
-    <>
-      {cultures.length === 0 ? (
-        ""
-      ) : (
-        <DisplayPrice price={cultures[activeCulture].price} />
-      )}
-    </>
-  );
+  const getPathToInfo = () =>
+    props.market.concat(
+      "/",
+      cultures[activeCulture][0],
+      "/",
+      cultures[activeCulture][0],
+      "List"
+    );
 
   return (
     <>
@@ -39,7 +40,6 @@ const DisplayRate = (props) => {
         <nav className={style.nav_display_rate}>
           {cultures.map((culx, index) => (
             <Link
-              //to={`${props.market}/${culx.culture}`}
               to={"#"}
               key={index}
               onClick={() => setActiveCulture(index)}
@@ -49,12 +49,12 @@ const DisplayRate = (props) => {
                   : style.display_buttonNonActive
               }
             >
-              {culx.culture}
+              {culx[1]}
             </Link>
           ))}
         </nav>
       </div>
-      {props.market === "marketWorld" ? marketType() : null}
+      {<DisplayPrice path={getPathToInfo()} />}
     </>
   );
 };

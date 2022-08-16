@@ -31,13 +31,9 @@ def updatePricesMarketWorld (culture,price):
 
     return 
 
+def parse(link,)
     
 def tinitUpdate():
-
-    # cultures = {
-    # 'wheat' : 'https://markets.businessinsider.com/commodities/wheat-price',
-    #  'corn' : 'https://markets.businessinsider.com/commodities/corn-price',
-    #             }
 
     fileSitesJson = open('sites.json')
 
@@ -45,23 +41,24 @@ def tinitUpdate():
 
     fileSitesJson.close()
 
-    for obj in sitesObj:
-        for keys in obj:
-            print(keys)
-            for val in obj[keys]:
-                print(val["link"])
+    for arrayOfCultures in sitesObj:
+        for culture in arrayOfCultures:
+            for val in arrayOfCultures[culture]:
+
+                
+                #print(val["link"])
                 page = requests.get(val["link"])
                 soup = BeautifulSoup(page.text, "html.parser")
-                allx = []
-                ally = []
-                allx = soup.findAll('div', class_="price-section__values")
+                mainDivs = []
+                targetElements = []
+                mainDivs = soup.findAll('div', class_="price-section__values")
 
-                for data in allx:
-                    ally = data.find('span', class_="price-section__current-value") 
-                    print(ally.get_text())
-                    updatePricesMarketWorld(keys,ally.get_text())
+                for data in mainDivs:
+                    targetElements = data.find('span', class_="price-section__current-value") 
+                    print(targetElements.get_text())
+                    updatePricesMarketWorld(culture,targetElements.get_text())
 
-
+    parse(val["link"],)                    
 
 
    
