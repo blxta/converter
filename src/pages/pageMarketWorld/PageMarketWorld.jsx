@@ -11,7 +11,7 @@ import { collection, getDocs } from "firebase/firestore";
 const PageMarketWorld = () => {
   return (
     <>
-      <DisplayRate market="marketWorld"></DisplayRate>
+      <DisplayRate market="World"></DisplayRate>
     </>
   );
 };

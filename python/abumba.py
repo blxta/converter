@@ -58,7 +58,7 @@ def tinitUpdate():
                     print(targetElements.get_text())
                     updatePricesMarketWorld(culture,targetElements.get_text())
 
-    parse(val["link"],)                    
+   # parse(val["link"],)                    
 
 
    

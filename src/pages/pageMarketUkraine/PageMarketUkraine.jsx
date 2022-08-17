@@ -11,7 +11,7 @@ import { collection, getDocs } from "firebase/firestore";
 const PageMarketUkraine = () => {
   return (
     <>
-      <DisplayRate market="marketUkraine"></DisplayRate>
+      <DisplayRate market="Ukraine"></DisplayRate>
 
       <div>таблиця прєдложеній хтмл</div>
       <div> фільтр область (вся україна), культури прєдложенія</div>

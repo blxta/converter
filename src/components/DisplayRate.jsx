@@ -13,7 +13,9 @@ const DisplayRate = (props) => {
 
   useEffect(() => {
     const fetchCulturesName = async () => {
-      const querySnapshot = await getDocs(collection(db, props.market));
+      const querySnapshot = await getDocs(
+        collection(db, "market".concat(props.market))
+      );
       const cul = [];
       querySnapshot.forEach((doc) => {
         let id = doc.id;
@@ -26,12 +28,14 @@ const DisplayRate = (props) => {
   }, [activeCulture]);
 
   const getPathToInfo = () =>
-    props.market.concat(
-      "/",
-      cultures[activeCulture][0],
-      "/",
-      cultures[activeCulture][0],
-      "List"
+    "market".concat(
+      props.market.concat(
+        "/",
+        cultures[activeCulture][0],
+        "/",
+        cultures[activeCulture][0],
+        "List"
+      )
     );
 
   return (
@@ -54,7 +58,8 @@ const DisplayRate = (props) => {
           ))}
         </nav>
       </div>
-      {<DisplayPrice path={getPathToInfo()} />}
+      {console.log(props.market, " market")}
+      {<DisplayPrice path={getPathToInfo()} market={props.market} />}
     </>
   );
 };
