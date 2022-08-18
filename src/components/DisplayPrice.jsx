@@ -23,6 +23,7 @@ const DisplayPriceUkraine = ({ cultureInfoArray }) => {
             <th>номер</th>
             <th>форма</th>
             <th>регіон</th>
+            <th>вага</th>
           </tr>
         </thead>
         <tbody>
@@ -33,6 +34,7 @@ const DisplayPriceUkraine = ({ cultureInfoArray }) => {
               <td>{culture.contact}</td>
               <td>{culture.form}</td>
               <td>{culture.region}</td>
+              <td>{culture.weight}</td>
             </tr>
           ))}
         </tbody>
@@ -88,7 +90,7 @@ const DisplayPrice = ({ path, market }) => {
     <>
       {market == "World" && (
         <DisplayPriceWorld
-          cultureInfoArray={cultureInfoArray}
+          cultureInfoArray={cultureInfoArray.slice()}
         ></DisplayPriceWorld>
       )}
       {market == "Ukraine" && (

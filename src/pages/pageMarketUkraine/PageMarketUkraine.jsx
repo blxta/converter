@@ -12,8 +12,6 @@ const PageMarketUkraine = () => {
   return (
     <>
       <DisplayRate market="Ukraine"></DisplayRate>
-
-      <div>таблиця прєдложеній хтмл</div>
       <div> фільтр область (вся україна), культури прєдложенія</div>
     </>
   );
