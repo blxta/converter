@@ -2,19 +2,19 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-import DisplayPrice from "./DisplayPrice";
+import { DisplayPrice } from "./DisplayPrice";
 import style from "./displayrate.module.scss";
 import { db } from "../firebase/config";
 import { collection, getDocs, onSnapshot, doc } from "firebase/firestore";
 
-const DisplayRate = (props) => {
+const DisplayRate = ({ market, createPath }) => {
   const [activeCulture, setActiveCulture] = useState(0);
   const [cultures, setCultures] = useState(["", ""]);
 
   useEffect(() => {
     const fetchCulturesName = async () => {
       const querySnapshot = await getDocs(
-        collection(db, "market".concat(props.market))
+        collection(db, "market".concat(market))
       );
       const cul = [];
       querySnapshot.forEach((doc) => {
@@ -27,16 +27,20 @@ const DisplayRate = (props) => {
     fetchCulturesName();
   }, [activeCulture]);
 
-  const getPathToInfo = () =>
-    "market".concat(
-      props.market.concat(
-        "/",
-        cultures[activeCulture][0],
-        "/",
-        cultures[activeCulture][0],
-        "List"
-      )
-    );
+  useEffect(() => {
+    const getPathToInfo = () =>
+      "market".concat(
+        market.concat(
+          "/",
+          cultures[activeCulture][0],
+          "/",
+          cultures[activeCulture][0],
+          "List"
+        )
+      );
+
+    createPath(() => getPathToInfo());
+  });
 
   return (
     <>
@@ -58,8 +62,6 @@ const DisplayRate = (props) => {
           ))}
         </nav>
       </div>
-      {console.log(props.market, " market")}
-      {<DisplayPrice path={getPathToInfo()} market={props.market} />}
     </>
   );
 };

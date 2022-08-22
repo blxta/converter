@@ -7,6 +7,7 @@ import PageMarketWorld from "../pages/pageMarketWorld/PageMarketWorld";
 import PageMarketUkraine from "../pages/pageMarketUkraine/PageMarketUkraine";
 import PageNews from "../pages/pageNews/PageNews";
 import PageTaxes from "../pages/pageTaxes/PageTaxes";
+import Income from "./IncomeToUkraine";
 const menus = [
   ["біржі", "marketWorld"],
   ["україна", "marketUkraine"],
@@ -20,9 +21,9 @@ const Navigation = () => {
   const switchNav = () => {
     switch (activeNavItem) {
       case 0:
-        return <PageMarketWorld></PageMarketWorld>;
+        return <PageMarketWorld market="World"></PageMarketWorld>;
       case 1:
-        return <PageMarketUkraine></PageMarketUkraine>;
+        return <PageMarketUkraine market="Ukraine"></PageMarketUkraine>;
       case 2:
         return <PageNews></PageNews>;
       case 3:
@@ -49,7 +50,9 @@ const Navigation = () => {
             </Link>
           ))}
         </nav>
+        {/* <Income></Income> */}
       </div>
+
       {switchNav()}
     </>
   );
