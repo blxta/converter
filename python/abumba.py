@@ -31,7 +31,6 @@ def updatePricesMarketWorld (culture,price):
 
     return 
 
-def parse(link,)
     
 def tinitUpdate():
 
