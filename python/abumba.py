@@ -15,12 +15,11 @@ import codecs
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
-
-
-
- 
 cred = credentials.Certificate('key.json')
 firebase_admin.initialize_app(cred)
+
+
+
 
 def updatePricesMarketWorld (culture,price):
    
@@ -32,20 +31,15 @@ def updatePricesMarketWorld (culture,price):
     return 
 
     
-def tinitUpdate():
+def pricesUpdate():
 
     fileSitesJson = open('sites.json')
 
-    sitesObj = json.load(fileSitesJson)
-
+    sitesList = json.load(fileSitesJson)
     fileSitesJson.close()
-
-    for arrayOfCultures in sitesObj:
+    for arrayOfCultures in sitesList:
         for culture in arrayOfCultures:
-            for val in arrayOfCultures[culture]:
-
-                
-                #print(val["link"])
+            for val in arrayOfCultures[culture]:                               
                 page = requests.get(val["link"])
                 soup = BeautifulSoup(page.text, "html.parser")
                 mainDivs = []
@@ -57,10 +51,5 @@ def tinitUpdate():
                     print(targetElements.get_text())
                     updatePricesMarketWorld(culture,targetElements.get_text())
 
-   # parse(val["link"],)                    
-
-
-   
-
-tinitUpdate()
+pricesUpdate()
 

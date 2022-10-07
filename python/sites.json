@@ -1,20 +1,18 @@
-[
-	{
-		"corn": [
-			{
-				"market": "usa",
-				"index": "ebuz",
-				"link": "https://markets.businessinsider.com/commodities/corn-price"
-			}
-		]
-	},
-	{
-		"wheat": [
-			{
-				"market": "usa",
-				"index": "bobuz",
-				"link": "https://markets.businessinsider.com/commodities/wheat-price"
-			}
-		]
-	}
-]
+{
+  "corn": [
+    {
+      "website": "businessinsider",
+      "market": "usa",
+      "index": "ebuz",
+      "link": "https://markets.businessinsider.com/commodities/corn-price"
+    }
+  ],
+  "weat": [
+    {
+      "website": "businessinsider",
+      "market": "usa",
+      "index": "bobuz",
+      "link": "https://markets.businessinsider.com/commodities/wheat-price"
+    }
+  ]
+}

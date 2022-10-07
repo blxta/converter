@@ -101,7 +101,6 @@ const FilterForPageUkraine = ({ getData, pathToGetData }) => {
     </>
   );
 };
-
 const DisplayPriceUkraine = ({ initialPath: path }) => {
   const [dataToDisplay, setDataToDisplay] = useState([]);
 
@@ -144,9 +143,11 @@ const DisplayPriceUkraine = ({ initialPath: path }) => {
   );
 };
 
-const DisplayPriceWorld = ({ cultureInfoArray }) => {
+const DisplayPriceWorld = ({ initialPath: path }) => {
+  const cultureInfoArray = useGetCollection(path);
   return (
     <>
+      {console.log(cultureInfoArray)}
       <div className={style.div}>
         <table className={style.table}>
           <thead>
@@ -176,15 +177,11 @@ const DisplayPriceWorld = ({ cultureInfoArray }) => {
 };
 
 const DisplayPrice = ({ path, market }) => {
-  console.log("путь2", path);
   return (
     <>
-      {/* {market == "World" && (
-        <DisplayPriceWorld
-          cultureInfoArray={cultureInfoArray}
-          //path={path}
-        ></DisplayPriceWorld>
-      )} */}
+      {market == "World" && (
+        <DisplayPriceWorld initialPath={path}></DisplayPriceWorld>
+      )}
       {market == "Ukraine" && (
         <DisplayPriceUkraine initialPath={path}></DisplayPriceUkraine>
       )}

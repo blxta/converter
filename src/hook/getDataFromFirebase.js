@@ -22,24 +22,20 @@ const useGetCollection = (path, params) => {
   //    formOfPay: 0,
   //  });
 
-  console.log("путь", path);
-
   useEffect(() => {
     if (path != undefined && path != null && path != "") {
       const unsubscribe = onSnapshot(
-        query(collection(db, path), where("region", "==", "Дніпровська")),
+        query(collection(db, path)),
 
         (querySnap) => {
           let tempArray = [];
           querySnap.forEach((doc) => tempArray.push(doc.data()));
           setData(tempArray);
-          console.log(tempArray, "temp");
         }
       );
       return () => unsubscribe();
     }
   }, [path]);
-
   return data;
 };
 

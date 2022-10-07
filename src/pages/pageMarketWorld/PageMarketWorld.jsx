@@ -14,8 +14,8 @@ const PageMarketWorld = ({ market }) => {
   const getPath = (path) => setPathToInfo(path);
   return (
     <>
-      {/* <DisplayRate market={market} createPath={getPath}></DisplayRate>
-      <DisplayPrice path={pathToInfo} market={market}></DisplayPrice> */}
+      <DisplayRate market={market} createPath={getPath}></DisplayRate>
+      <DisplayPrice path={pathToInfo} market={market}></DisplayPrice> 
     </>
   );
 };

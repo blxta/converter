@@ -27,4 +27,4 @@ culture = "corn"
 
 
 updd = db.collection('marketWorld').document(u'{}'.format(culture))
-updd.update({u'price': 1035400})
+updd.update({u'price': 66666})

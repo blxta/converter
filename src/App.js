@@ -18,12 +18,12 @@ function App() {
         <Route path="/" element={<Layout></Layout>}>
           <Route path="/" element={<Navigation></Navigation>}>
             <Route index path="MarketWorld" />
-            <Route path="taxes" element={<PageTaxes></PageTaxes>} />
+            {/* <Route path="taxes" element={<PageTaxes></PageTaxes>} />
             <Route path="news" element={<PageNews></PageNews>} />
             <Route
               path="MarketUkraine"
               element={<PageMarketUkraine></PageMarketUkraine>}
-            />
+            /> */}
           </Route>
         </Route>
       </Routes>
