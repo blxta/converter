@@ -14,7 +14,6 @@ const PageMarketWorld = ({ market }) => {
   const getPath = (path) => setPathToInfo(path);
   return (
     <>
-      {console.log("ziz")}
       <DisplayRate market={market} createPath={getPath}></DisplayRate>
       <DisplayPrice path={pathToInfo} market={market}></DisplayPrice>
     </>

@@ -2,16 +2,16 @@
   "corn": [
     {
       "website": "businessinsider",
-      "market": "usa",
-      "index": "ebuz",
+      "market": "USA",
+      "index": "EBUZ",
       "link": "https://markets.businessinsider.com/commodities/corn-price"
     }
   ],
-  "weat": [
+  "wheat": [
     {
       "website": "businessinsider",
-      "market": "usa",
-      "index": "bobuz",
+      "market": "USA",
+      "index": "BOBUZ",
       "link": "https://markets.businessinsider.com/commodities/wheat-price"
     }
   ]
