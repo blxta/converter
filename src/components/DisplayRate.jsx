@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
+import { useMediaQuery } from "react-responsive";
 import { DisplayPrice } from "./DisplayPrice";
 import style from "./displayrate.module.scss";
 import { db } from "../firebase/config";
@@ -9,7 +9,7 @@ import { collection, getDocs, onSnapshot, doc } from "firebase/firestore";
 
 const DisplayRate = ({ market, createPath }) => {
   const [activeCulture, setActiveCulture] = useState(0);
-  const [cultures, setCultures] = useState(["", ""]);
+  const [cultures, setCultures] = useState([""]);
 
   useEffect(() => {
     const fetchCulturesName = async () => {
@@ -42,25 +42,45 @@ const DisplayRate = ({ market, createPath }) => {
     createPath(() => getPathToInfo());
   });
 
+  const renderMobileVersion = useMediaQuery({ query: "(max-width: 600px)" });
+  const renderOthersVersion = useMediaQuery({ query: "(min-width: 600px)" });
   return (
     <>
       <div className={style.content_display_rate}>
-        <nav className={style.nav_display_rate}>
-          {cultures.map((culx, index) => (
-            <Link
-              to={"#"}
-              key={index}
-              onClick={() => setActiveCulture(index)}
-              className={
-                index === activeCulture
-                  ? style.display_buttonActive
-                  : style.display_buttonNonActive
-              }
+        {renderMobileVersion && (
+          <>
+            <select
+              name="mobile_select"
+              onChange={(e) => setActiveCulture(e.target.value)}
             >
-              {culx[1]}
-            </Link>
-          ))}
-        </nav>
+              {cultures.map((culx, index) => (
+                <option key={index} value={index}>
+                  {culx[1]}
+                </option>
+              ))}
+            </select>
+          </>
+        )}
+        {renderOthersVersion && (
+          <>
+            <nav className={style.nav_display_rate}>
+              {cultures.map((culx, index) => (
+                <Link
+                  to={"#"}
+                  key={index}
+                  onClick={() => setActiveCulture(index)}
+                  className={
+                    index === activeCulture
+                      ? style.display_buttonActive
+                      : style.display_buttonNonActive
+                  }
+                >
+                  {culx[1]}
+                </Link>
+              ))}
+            </nav>
+          </>
+        )}
       </div>
     </>
   );

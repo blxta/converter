@@ -163,7 +163,9 @@ const DisplayPriceWorld = ({ initialPath: path }) => {
                 <tr key={index}>
                   <td>{culture.indexMarket}</td>
                   <td>
-                    <span className={style.price}>{culture.price}</span>
+                    <span className={style.price}>
+                      {culture.price + "\u0024" + "/тн"}
+                    </span>
                   </td>
                   <td>{culture.marketRegion}</td>
                 </tr>
