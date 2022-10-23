@@ -39,7 +39,8 @@ const DisplayRate = ({ market, createPath }) => {
         )
       );
 
-    createPath(() => getPathToInfo());
+    const p = getPathToInfo();
+    createPath([p, cultures].slice(0));
   });
 
   const renderMobileVersion = useMediaQuery({ query: "(max-width: 600px)" });
@@ -50,6 +51,7 @@ const DisplayRate = ({ market, createPath }) => {
         {renderMobileVersion && (
           <>
             <select
+              className="round"
               name="mobile_select"
               onChange={(e) => setActiveCulture(e.target.value)}
             >
