@@ -26,7 +26,6 @@ const useGetCollection = (path, params) => {
     if (path != undefined && path != null && path != "") {
       const unsubscribe = onSnapshot(
         query(collection(db, path)),
-
         (querySnap) => {
           let tempArray = [];
           querySnap.forEach((doc) => tempArray.push(doc.data()));

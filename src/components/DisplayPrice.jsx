@@ -13,11 +13,10 @@ import {
   query,
   connectFirestoreEmulator,
 } from "firebase/firestore";
+import { isCompositeComponentWithType } from "react-dom/test-utils";
 
 const FilterForPageUkraine = ({ getData, pathToGetData }) => {
-  const [g, setG] = useState([]);
-
-  const [q] = useGetCollection(pathToGetData, {});
+  const dataForDisplay = useGetCollection(pathToGetData);
 
   const regions = [
     //send this on server
@@ -62,56 +61,52 @@ const FilterForPageUkraine = ({ getData, pathToGetData }) => {
   const handleSelectFormOfPay = (value) => {
     // setFilter({ ...filter, formOfPay: value });
   };
+
   return (
     <>
-      <div className={style.filter_}>
-        <div className="filter-region">
-          <label>Регіон:</label>
-          <select
-            name="region"
-            onChange={(e) => handleSelectRegion(e.target.value)}
-          >
-            {regions.map((x) => (
-              <option key={x[0]} value={x[1]["ua"]}>
-                {x[1]["ua"]}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label>Ціна</label>
-          <div className={style.filter__price}>
-            <input type="number" placeholder="від:" min="0"></input>
-            <input type="number" placeholder="до:" max="1000000"></input>
+      {getData(dataForDisplay)}
+      {dataForDisplay.length !== 0 && (
+        <div className={style.filter_}>
+          <div className="filter-region">
+            <label>Регіон:</label>
+            <select
+              name="region"
+              onChange={(e) => handleSelectRegion(e.target.value)}
+            >
+              {regions.map((x) => (
+                <option key={x[0]} value={x[1]["ua"]}>
+                  {x[1]["ua"]}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label>Ціна</label>
+            <div className={style.filter__price}>
+              <input type="number" placeholder="від:" min="0"></input>
+              <input type="number" placeholder="до:" max="1000000"></input>
+            </div>
+          </div>
+          <div className="filter-form-of-pay">
+            <label>Форма оплати:</label>
+            <select
+              name="form-of-pay"
+              onChange={(e) => handleSelectFormOfPay(e.target.value)}
+            >
+              <option>Всі</option>
+              <option>1</option>
+              <option>2</option>
+            </select>
           </div>
         </div>
-        <div className="filter-form-of-pay">
-          <label>Форма оплати:</label>
-          <select
-            name="form-of-pay"
-            onChange={(e) => handleSelectFormOfPay(e.target.value)}
-          >
-            <option>Всі</option>
-            <option>1</option>
-            <option>2</option>
-          </select>
-        </div>
-      </div>
-      {console.log("сработало = ", q)}
+      )}
     </>
   );
 };
-const DisplayPriceUkraine = ({ initialPath: path }) => {
-  const [dataToDisplay, setDataToDisplay] = useState([]);
 
-  const getDataAfterFiltering = (data) => setDataToDisplay(data);
-
+const Table = ({ dataToDisplay }) => {
   return (
     <>
-      <FilterForPageUkraine
-        getData={getDataAfterFiltering}
-        pathToGetData={path}
-      ></FilterForPageUkraine>
       <br></br>
       <table className={style.table}>
         <thead>
@@ -143,11 +138,64 @@ const DisplayPriceUkraine = ({ initialPath: path }) => {
   );
 };
 
+const ElementSortingDataToDisplay = () => {
+  return (
+    <>
+      <div style={style.wrapper_sort}>
+        <label>сортування:</label>
+        <select>
+          <option>оберіть</option>
+          <option>дата новіша</option>
+          <option>дата старіша</option>
+          <option>ціна зростання</option>
+          <option>ціна спадання</option>
+          <option>обєм більший</option>
+          <option>обєм менший</option>
+          <option>компанія а-я</option>
+          <option>компанія я-а</option>
+        </select>
+      </div>
+    </>
+  );
+};
+
+const DisplayPriceUkraine = ({ initialPath: pathToCollection }) => {
+  const [dataToDisplay, setDataToDisplay] = useState([]);
+
+  const getDataAfterFiltering = (data) => setDataToDisplay(data);
+
+  return (
+    <>
+      <div className={style.wrapper_sort_filter}>
+        <a href="#">фільтри</a>
+        <ElementSortingDataToDisplay></ElementSortingDataToDisplay>
+      </div>
+      <br></br>
+      <FilterForPageUkraine
+        getData={getDataAfterFiltering}
+        pathToGetData={pathToCollection}
+      ></FilterForPageUkraine>
+      {dataToDisplay.length !== 0 ? (
+        <Table dataToDisplay={dataToDisplay} />
+      ) : (
+        <span
+          style={{
+            display: "inline-block",
+            width: "100%",
+            textAlign: "center",
+          }}
+        >
+          А нема, миші зіли!
+        </span>
+      )}
+    </>
+  );
+};
+
 const DisplayPriceWorld = ({ initialPath: path }) => {
   const cultureInfoArray = useGetCollection(path);
   return (
     <>
-      {console.log(cultureInfoArray)}
       <div className={style.div}>
         <table className={style.table}>
           <thead>

@@ -39,8 +39,7 @@ const DisplayRate = ({ market, createPath }) => {
         )
       );
 
-    const p = getPathToInfo();
-    createPath([p, cultures].slice(0));
+    createPath(getPathToInfo());
   });
 
   const renderMobileVersion = useMediaQuery({ query: "(max-width: 600px)" });

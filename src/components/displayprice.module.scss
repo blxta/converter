@@ -61,3 +61,20 @@ label {
   font-size: large;
   margin-bottom: 1%;
 }
+
+.wrapper_sort_filter {
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  a {
+    text-decoration: none;
+    display: block;
+    font-family: "Signika Negative", sans-serif;
+    padding: 5px;
+    border: solid 2px #008080;
+    border-radius: 1em;
+  }
+}
+
+.wrapper_sort {
+}

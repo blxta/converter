@@ -10,9 +10,9 @@ import PageTaxes from "../pages/pageTaxes/PageTaxes";
 import Income from "./IncomeToUkraine";
 const menus = [
   ["біржі", "marketWorld"],
-  // ["україна", "marketUkraine"],
-  // ["новини", "news"],
-  // ["податки", "taxes"],
+  ["україна", "marketUkraine"],
+  ["новини", "news"],
+  ["податки", "taxes"],
 ];
 
 const Navigation = () => {
@@ -23,11 +23,11 @@ const Navigation = () => {
       case 0:
         return <PageMarketWorld market="World"></PageMarketWorld>;
       case 1:
-      //     return <PageMarketUkraine market="Ukraine"></PageMarketUkraine>;
-      //   case 2:
-      //     return <PageNews></PageNews>;
-      //   case 3:
-      //     return <PageTaxes></PageTaxes>;
+        return <PageMarketUkraine market="Ukraine"></PageMarketUkraine>;
+      case 2:
+        return <PageNews></PageNews>;
+      case 3:
+        return <PageTaxes></PageTaxes>;
     }
   };
 

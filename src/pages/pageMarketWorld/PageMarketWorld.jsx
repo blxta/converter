@@ -13,11 +13,9 @@ import { collection, getDocs } from "firebase/firestore";
 
 const PageMarketWorld = ({ market }) => {
   const [pathToInfo, setPathToInfo] = useState("");
-  const [arrayOfCultures, setArrayOfCultures] = useState([]);
+
   const getPath = (path) => {
-    setArrayOfCultures(path[1]);
-    setPathToInfo(path[0]);
-    return;
+    setPathToInfo(path);
   };
 
   return (
