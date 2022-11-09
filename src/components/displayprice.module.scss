@@ -66,15 +66,31 @@ label {
   width: 50%;
   display: flex;
   justify-content: space-around;
-  a {
+  align-items: center;
+
+  a,
+  .wrapper_sort {
     text-decoration: none;
     display: block;
+
+    color: black;
+
     font-family: "Signika Negative", sans-serif;
     padding: 5px;
     border: solid 2px #008080;
     border-radius: 1em;
+
+    select {
+      border: solid 2px #008080;
+      border-radius: 1em;
+    }
   }
 }
 
-.wrapper_sort {
-}
+//  {
+//   display: block;
+//   font-family: "Signika Negative", sans-serif;
+//   padding: 5px;
+//   border: solid 2px #008080;
+//   border-radius: 1em;
+// }

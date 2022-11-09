@@ -141,7 +141,7 @@ const Table = ({ dataToDisplay }) => {
 const ElementSortingDataToDisplay = () => {
   return (
     <>
-      <div style={style.wrapper_sort}>
+      <div className={style.wrapper_sort}>
         <label>сортування:</label>
         <select>
           <option>оберіть</option>
@@ -161,20 +161,30 @@ const ElementSortingDataToDisplay = () => {
 
 const DisplayPriceUkraine = ({ initialPath: pathToCollection }) => {
   const [dataToDisplay, setDataToDisplay] = useState([]);
+  // let click = false;
+  const [isVisibleFilter, setVisibleFilter] = useState(false);
 
   const getDataAfterFiltering = (data) => setDataToDisplay(data);
+  const handleClickOnVisibleFilter = (click) =>
+    setVisibleFilter((current) => !current);
 
   return (
     <>
       <div className={style.wrapper_sort_filter}>
-        <a href="#">фільтри</a>
+        <a href="#" onClick={handleClickOnVisibleFilter}>
+          фільтри
+        </a>
         <ElementSortingDataToDisplay></ElementSortingDataToDisplay>
       </div>
       <br></br>
-      <FilterForPageUkraine
-        getData={getDataAfterFiltering}
-        pathToGetData={pathToCollection}
-      ></FilterForPageUkraine>
+
+      {isVisibleFilter && (
+        <FilterForPageUkraine
+          getData={getDataAfterFiltering}
+          pathToGetData={pathToCollection}
+        ></FilterForPageUkraine>
+      )}
+
       {dataToDisplay.length !== 0 ? (
         <Table dataToDisplay={dataToDisplay} />
       ) : (
