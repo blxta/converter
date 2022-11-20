@@ -15,26 +15,25 @@ const useGetCollection = (path, params) => {
   const [isError, setIsError] = useState(false);
   const [data, setData] = useState([]);
 
-  //  const [filter, setFilter] = useState({
-  //    region: "Всі",
-  //    priceMIN: 0,
-  //    priceMAX: 0,
-  //    formOfPay: 0,
-  //  });
-
   useEffect(() => {
     if (path != undefined && path != null && path != "") {
-      const unsubscribe = onSnapshot(
-        query(collection(db, path)),
-        (querySnap) => {
-          let tempArray = [];
-          querySnap.forEach((doc) => tempArray.push(doc.data()));
-          setData(tempArray);
-        }
-      );
+      let q = query(collection(db, path));
+
+      if (
+        params !== {} &&
+        params.region !== "" &&
+        params.region !== undefined
+      ) {
+        q = query(collection(db, path), where("region", "==", params.region));
+      }
+      const unsubscribe = onSnapshot(q, (querySnap) => {
+        let tempArray = [];
+        querySnap.forEach((doc) => tempArray.push(doc.data()));
+        setData(tempArray);
+      });
       return () => unsubscribe();
     }
-  }, [path]);
+  }, [path, params]);
   return data;
 };
 

@@ -47,39 +47,43 @@ const DisplayRate = ({ market, createPath }) => {
   return (
     <>
       <div className={style.content_display_rate}>
-        {renderMobileVersion && (
+        {cultures.length !== 0 && (
           <>
-            <select
-              className="round"
-              name="mobile_select"
-              onChange={(e) => setActiveCulture(e.target.value)}
-            >
-              {cultures.map((culx, index) => (
-                <option key={index} value={index}>
-                  {culx[1]}
-                </option>
-              ))}
-            </select>
-          </>
-        )}
-        {renderOthersVersion && (
-          <>
-            <nav className={style.nav_display_rate}>
-              {cultures.map((culx, index) => (
-                <Link
-                  to={"#"}
-                  key={index}
-                  onClick={() => setActiveCulture(index)}
-                  className={
-                    index === activeCulture
-                      ? style.display_buttonActive
-                      : style.display_buttonNonActive
-                  }
+            {renderMobileVersion && (
+              <>
+                <select
+                  className="round"
+                  name="mobile_select"
+                  onChange={(e) => setActiveCulture(e.target.value)}
                 >
-                  {culx[1]}
-                </Link>
-              ))}
-            </nav>
+                  {cultures.map((culx, index) => (
+                    <option key={index} value={index}>
+                      {culx[1]}
+                    </option>
+                  ))}
+                </select>
+              </>
+            )}
+            {renderOthersVersion && (
+              <>
+                <nav className={style.nav_display_rate}>
+                  {cultures.map((culx, index) => (
+                    <Link
+                      to={"#"}
+                      key={index}
+                      onClick={() => setActiveCulture(index)}
+                      className={
+                        index === activeCulture
+                          ? style.display_buttonActive
+                          : style.display_buttonNonActive
+                      }
+                    >
+                      {culx[1]}
+                    </Link>
+                  ))}
+                </nav>
+              </>
+            )}
           </>
         )}
       </div>

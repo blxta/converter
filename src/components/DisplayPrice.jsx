@@ -13,59 +13,63 @@ import {
   query,
   connectFirestoreEmulator,
 } from "firebase/firestore";
-import { isCompositeComponentWithType } from "react-dom/test-utils";
+import { act, isCompositeComponentWithType } from "react-dom/test-utils";
 
-const FilterForPageUkraine = ({ getData, pathToGetData }) => {
-  const dataForDisplay = useGetCollection(pathToGetData);
-
-  const regions = [
-    //send this on server
-    [1, { ua: "Всі" }],
-    [2, { ua: "Вінницька" }],
-    [3, { ua: "Волинська" }],
-    [4, { ua: "Дніпровська" }],
-    [5, { ua: "Донецька" }],
-    [6, { ua: "Житомирська" }],
-    [7, { ua: "Закарпатська" }],
-    [8, { ua: "Запорізька" }],
-    [9, { ua: "Івано-Франківська" }],
-    [10, { ua: "Київська" }],
-    [11, { ua: "Кіровоградська" }],
-    [12, { ua: "Луганська" }],
-    [13, { ua: "Львівська" }],
-    [14, { ua: "Миколаївська" }],
-    [15, { ua: "Одеська" }],
-    [16, { ua: "Полтавська" }],
-    [17, { ua: "Рівненська" }],
-    [18, { ua: "Сумська" }],
-    [19, { ua: "Тернопільська" }],
-    [20, { ua: "Харківська" }],
-    [21, { ua: "Херсонська" }],
-    [22, { ua: "Хмельницька" }],
-    [23, { ua: "Черкаська" }],
-    [24, { ua: "Чернівецька" }],
-    [25, { ua: "Чернігівська" }],
-  ];
-
-  const [filter, setFilter] = useState({
-    region: "Всі",
+const Filter = ({ getFiltered }) => {
+  const [filterValues, setFilterValues] = useState({
+    region: "",
     priceMIN: 0,
-    priceMAX: 0,
-    formOfPay: "Всі",
+    princeMAX: 0,
+    formOfPay: "",
   });
 
+  const regions = [
+    { id: 1, ua: "Всі" },
+    { id: 2, ua: "Вінницька" },
+    { id: 3, ua: "Волинська" },
+    { id: 4, ua: "Дніпровська" },
+    { id: 5, ua: "Донецька" },
+    { id: 6, ua: "Житомирська" },
+    { id: 7, ua: "Закарпатська" },
+    { id: 8, ua: "Запорізька" },
+    { id: 9, ua: "Івано-Франківська" },
+    { id: 10, ua: "Київська" },
+    { id: 11, ua: "Кіровоградська" },
+    { id: 12, ua: "Луганська" },
+    { id: 13, ua: "Львівська" },
+    { id: 14, ua: "Миколаївська" },
+    { id: 15, ua: "Одеська" },
+    { id: 16, ua: "Полтавська" },
+    { id: 17, ua: "Рівненська" },
+    { id: 18, ua: "Сумська" },
+    { id: 19, ua: "Тернопільська" },
+    { id: 20, ua: "Харківська" },
+    { id: 21, ua: "Херсонська" },
+    { id: 22, ua: "Хмельницька" },
+    { id: 23, ua: "Черкаська" },
+    { id: 24, ua: "Чернівецька" },
+    { id: 25, ua: "Чернігівська" },
+  ];
+
+  useEffect(() => {
+    return getFiltered(filterValues);
+  }, [filterValues]);
+
   const handleSelectRegion = (value) => {
-    // setFilter({ ...filter, region: value });
+    value !== "Всі"
+      ? setFilterValues(() => ({ ...filterValues, region: value }))
+      : setFilterValues(() => ({ ...filterValues, region: "" }));
   };
 
   const handleSelectFormOfPay = (value) => {
-    // setFilter({ ...filter, formOfPay: value });
+    value !== "Всі"
+      ? setFilterValues(() => ({ ...filterValues, formOfPay: value }))
+      : setFilterValues(() => ({ ...filterValues, formOfPay: "" }));
   };
 
   return (
     <>
-      {getData(dataForDisplay)}
-      {dataForDisplay.length !== 0 && (
+      {
         <div className={style.filter_}>
           <div className="filter-region">
             <label>Регіон:</label>
@@ -73,9 +77,9 @@ const FilterForPageUkraine = ({ getData, pathToGetData }) => {
               name="region"
               onChange={(e) => handleSelectRegion(e.target.value)}
             >
-              {regions.map((x) => (
-                <option key={x[0]} value={x[1]["ua"]}>
-                  {x[1]["ua"]}
+              {regions.map((region) => (
+                <option key={region.id} value={region.ua}>
+                  {region.ua}
                 </option>
               ))}
             </select>
@@ -99,46 +103,12 @@ const FilterForPageUkraine = ({ getData, pathToGetData }) => {
             </select>
           </div>
         </div>
-      )}
+      }
     </>
   );
 };
 
-const Table = ({ dataToDisplay }) => {
-  return (
-    <>
-      <br></br>
-      <table className={style.table}>
-        <thead>
-          <tr>
-            <th>компанія</th>
-            <th>ціна</th>
-            <th>номер</th>
-            <th>форма</th>
-            <th>регіон</th>
-            <th>дата</th>
-            <th>об"єм</th>
-          </tr>
-        </thead>
-        <tbody>
-          {dataToDisplay.map((culture, index) => (
-            <tr key={index}>
-              <td>{culture.company}</td>
-              <td>{culture.price}</td>
-              <td>{culture.contact}</td>
-              <td>{culture.form}</td>
-              <td>{culture.region}</td>
-              <td>дата поправить</td>
-              <td>{culture.value}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </>
-  );
-};
-
-const ElementSortingDataToDisplay = () => {
+const Sort = () => {
   return (
     <>
       <div className={style.wrapper_sort}>
@@ -159,44 +129,84 @@ const ElementSortingDataToDisplay = () => {
   );
 };
 
-const DisplayPriceUkraine = ({ initialPath: pathToCollection }) => {
+const Table = ({ path, filters }) => {
   const [dataToDisplay, setDataToDisplay] = useState([]);
-  // let click = false;
-  const [isVisibleFilter, setVisibleFilter] = useState(false);
-
-  const getDataAfterFiltering = (data) => setDataToDisplay(data);
-  const handleClickOnVisibleFilter = (click) =>
-    setVisibleFilter((current) => !current);
+  const data = useGetCollection(path, filters);
+  useEffect(() => {
+    setDataToDisplay(data);
+  });
 
   return (
     <>
-      <div className={style.wrapper_sort_filter}>
-        <a href="#" onClick={handleClickOnVisibleFilter}>
-          фільтри
-        </a>
-        <ElementSortingDataToDisplay></ElementSortingDataToDisplay>
-      </div>
-      <br></br>
-
-      {isVisibleFilter && (
-        <FilterForPageUkraine
-          getData={getDataAfterFiltering}
-          pathToGetData={pathToCollection}
-        ></FilterForPageUkraine>
-      )}
-
       {dataToDisplay.length !== 0 ? (
-        <Table dataToDisplay={dataToDisplay} />
+        <>
+          <br></br>
+          <table className={style.table}>
+            <thead>
+              <tr>
+                <th>компанія</th>
+                <th>ціна</th>
+                <th>номер</th>
+                <th>форма</th>
+                <th>регіон</th>
+                <th>дата</th>
+                <th>об"єм</th>
+              </tr>
+            </thead>
+            <tbody>
+              {dataToDisplay.map((culture, index) => (
+                <tr key={index}>
+                  <td>{culture.company}</td>
+                  <td>{culture.price}</td>
+                  <td>{culture.contact}</td>
+                  <td>{culture.form}</td>
+                  <td>{culture.region}</td>
+                  <td>дата поправить</td>
+                  <td>{culture.value}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
       ) : (
-        <span
-          style={{
-            display: "inline-block",
-            width: "100%",
-            textAlign: "center",
-          }}
-        >
-          А нема, миші зіли!
-        </span>
+        <> a нема миші зіли</>
+      )}
+    </>
+  );
+};
+
+const DisplayPriceUkraine = ({ initialPath: pathToCollection }) => {
+  const [isFilterVisible, setFilterVisible] = useState(false);
+  const [filters, setFiters] = useState({});
+
+  useEffect(() => {
+    setFilterVisible(false);
+    setFiters({});
+  }, [pathToCollection]);
+
+  const getFiltered = (forFilter) => {
+    setFiters({ ...forFilter });
+  };
+
+  const handleClickOnFilterVisible = () =>
+    setFilterVisible((current) => !current);
+
+  return (
+    <>
+      <div className="panel">
+        <div className={style.wrapper_sort_filter}>
+          <a href="#" onClick={handleClickOnFilterVisible}>
+            фільтри
+          </a>
+          <Sort></Sort>
+        </div>
+        <br></br>
+
+        {isFilterVisible && <Filter getFiltered={getFiltered}></Filter>}
+      </div>
+
+      {pathToCollection.length !== 0 && (
+        <Table path={pathToCollection} filters={filters} />
       )}
     </>
   );
@@ -239,9 +249,9 @@ const DisplayPriceWorld = ({ initialPath: path }) => {
 const DisplayPrice = ({ path, market }) => {
   return (
     <>
-      {market == "World" && (
+      {/* {market == "World" && (
         <DisplayPriceWorld initialPath={path}></DisplayPriceWorld>
-      )}
+      )} */}
       {market == "Ukraine" && (
         <DisplayPriceUkraine initialPath={path}></DisplayPriceUkraine>
       )}
