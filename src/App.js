@@ -11,6 +11,10 @@ import PageTaxes from "./pages/pageTaxes/PageTaxes";
 import PageNews from "./pages/pageNews/PageNews";
 import DisplayRate from "./components/DisplayRate";
 
+const NotFound = () => {
+  return <h1>NOT FOUND 404</h1>;
+};
+
 function App() {
   return (
     <>
@@ -25,6 +29,7 @@ function App() {
               element={<PageMarketUkraine></PageMarketUkraine>}
             />
           </Route>
+          <Route path="*" element={<NotFound></NotFound>} />
         </Route>
       </Routes>
     </>

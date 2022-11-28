@@ -17,10 +17,11 @@ import { act, isCompositeComponentWithType } from "react-dom/test-utils";
 
 const Filter = ({ getFiltered }) => {
   const [filterValues, setFilterValues] = useState({
-    region: "",
-    priceMIN: 0,
-    princeMAX: 0,
-    formOfPay: "",
+    ok: true,
+    region: undefined,
+    priceMIN: undefined,
+    priceMAX: undefined,
+    formOfPay: undefined,
   });
 
   const regions = [
@@ -58,13 +59,13 @@ const Filter = ({ getFiltered }) => {
   const handleSelectRegion = (value) => {
     value !== "Всі"
       ? setFilterValues(() => ({ ...filterValues, region: value }))
-      : setFilterValues(() => ({ ...filterValues, region: "" }));
+      : setFilterValues(() => ({ ...filterValues, region: undefined }));
   };
 
   const handleSelectFormOfPay = (value) => {
     value !== "Всі"
       ? setFilterValues(() => ({ ...filterValues, formOfPay: value }))
-      : setFilterValues(() => ({ ...filterValues, formOfPay: "" }));
+      : setFilterValues(() => ({ ...filterValues, formOfPay: undefined }));
   };
 
   return (
@@ -249,9 +250,9 @@ const DisplayPriceWorld = ({ initialPath: path }) => {
 const DisplayPrice = ({ path, market }) => {
   return (
     <>
-      {/* {market == "World" && (
+      {market == "World" && (
         <DisplayPriceWorld initialPath={path}></DisplayPriceWorld>
-      )} */}
+      )}
       {market == "Ukraine" && (
         <DisplayPriceUkraine initialPath={path}></DisplayPriceUkraine>
       )}
