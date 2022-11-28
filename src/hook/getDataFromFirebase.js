@@ -47,7 +47,32 @@ const useGetCollection = (path, params) => {
       s = swap.slice(0);
       swap.splice(0);
     }
-
+    if (paramsOfFilter.priceMIN) {
+      if (s[1] !== undefined) {
+        swap = s.map((x, index) => {
+          if (index > 1) return where("price", ">=", paramsOfFilter.priceMIN);
+          else return x;
+        });
+      } else {
+        swap = s.map((x) => where("price", ">=", paramsOfFilter.priceMIN));
+      }
+      s.splice(0);
+      s = swap.slice(0);
+      swap.splice(0);
+    }
+    if (paramsOfFilter.priceMAX) {
+      if (s[2] !== undefined) {
+        swap = s.map((x, index) => {
+          if (index > 1) return where("price", "<=", paramsOfFilter.priceMAX);
+          else return x;
+        });
+      } else {
+        swap = s.map((x) => where("price", "<=", paramsOfFilter.priceMAX));
+      }
+      s.splice(0);
+      s = swap.slice(0);
+      swap.splice(0);
+    }
     // s.forEach((i, index) => console.log(i));
     return s;
   }
@@ -64,10 +89,6 @@ const useGetCollection = (path, params) => {
           q = query(collection(db, path), a[0], a[1], a[2], a[3]);
         }
       }
-
-      // let p = a[0];
-
-      //        // q = query(collection(db, path), a[0]);
 
       const unsubscribe = onSnapshot(q, (querySnap) => {
         let tempArray = [];

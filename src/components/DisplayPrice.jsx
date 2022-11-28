@@ -68,6 +68,17 @@ const Filter = ({ getFiltered }) => {
       : setFilterValues(() => ({ ...filterValues, formOfPay: undefined }));
   };
 
+  const handlePriceMIN = (value = 0) => {
+    value !== 0
+      ? setFilterValues(() => ({ ...filterValues, priceMIN: value }))
+      : setFilterValues(() => ({ ...filterValues, priceMIN: undefined }));
+  };
+  const handlePriceMAX = (value = 0) => {
+    value !== 0
+      ? setFilterValues(() => ({ ...filterValues, priceMAX: value }))
+      : setFilterValues(() => ({ ...filterValues, priceMAX: undefined }));
+  };
+
   return (
     <>
       {
@@ -88,8 +99,18 @@ const Filter = ({ getFiltered }) => {
           <div>
             <label>Ціна</label>
             <div className={style.filter__price}>
-              <input type="number" placeholder="від:" min="0"></input>
-              <input type="number" placeholder="до:" max="1000000"></input>
+              <input
+                type="number"
+                placeholder="від:"
+                min="0"
+                onChange={(e) => handlePriceMIN(+e.target.value)}
+              ></input>
+              <input
+                type="number"
+                placeholder="до:"
+                max="1000000"
+                onChange={(e) => handlePriceMAX(+e.target.value)}
+              ></input>
             </div>
           </div>
           <div className="filter-form-of-pay">
