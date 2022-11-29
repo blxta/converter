@@ -68,12 +68,12 @@ const Filter = ({ getFiltered }) => {
       : setFilterValues(() => ({ ...filterValues, formOfPay: undefined }));
   };
 
-  const handlePriceMIN = (value = 0) => {
+  const handlePriceMIN = (value) => {
     value !== 0
       ? setFilterValues(() => ({ ...filterValues, priceMIN: value }))
       : setFilterValues(() => ({ ...filterValues, priceMIN: undefined }));
   };
-  const handlePriceMAX = (value = 0) => {
+  const handlePriceMAX = (value) => {
     value !== 0
       ? setFilterValues(() => ({ ...filterValues, priceMAX: value }))
       : setFilterValues(() => ({ ...filterValues, priceMAX: undefined }));

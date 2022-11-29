@@ -50,11 +50,11 @@ const useGetCollection = (path, params) => {
     if (paramsOfFilter.priceMIN) {
       if (s[1] !== undefined) {
         swap = s.map((x, index) => {
-          if (index > 1) return where("price", ">=", paramsOfFilter.priceMIN);
+          if (index > 1) return where("price", ">", paramsOfFilter.priceMIN);
           else return x;
         });
       } else {
-        swap = s.map((x) => where("price", ">=", paramsOfFilter.priceMIN));
+        swap = s.map((x) => where("price", ">", paramsOfFilter.priceMIN));
       }
       s.splice(0);
       s = swap.slice(0);
@@ -63,11 +63,11 @@ const useGetCollection = (path, params) => {
     if (paramsOfFilter.priceMAX) {
       if (s[2] !== undefined) {
         swap = s.map((x, index) => {
-          if (index > 1) return where("price", "<=", paramsOfFilter.priceMAX);
+          if (index > 1) return where("price", "<", paramsOfFilter.priceMAX);
           else return x;
         });
       } else {
-        swap = s.map((x) => where("price", "<=", paramsOfFilter.priceMAX));
+        swap = s.map((x) => where("price", "<", paramsOfFilter.priceMAX));
       }
       s.splice(0);
       s = swap.slice(0);
