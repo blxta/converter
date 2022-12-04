@@ -3,17 +3,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useGetCollection } from "../hook/getDataFromFirebase";
-
-import { db } from "../firebase/config";
-import {
-  collection,
-  getDocs,
-  onSnapshot,
-  doc,
-  query,
-  connectFirestoreEmulator,
-} from "firebase/firestore";
-import { act, isCompositeComponentWithType } from "react-dom/test-utils";
+import NewOrder from "./NewOrderForm";
 
 const Filter = ({ getFiltered }) => {
   const [filterValues, setFilterValues] = useState({
@@ -230,6 +220,7 @@ const DisplayPriceUkraine = ({ initialPath: pathToCollection }) => {
       {pathToCollection.length !== 0 && (
         <Table path={pathToCollection} filters={filters} />
       )}
+      <NewOrder></NewOrder>
     </>
   );
 };

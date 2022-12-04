@@ -8,6 +8,8 @@ import PageMarketUkraine from "../pages/pageMarketUkraine/PageMarketUkraine";
 import PageNews from "../pages/pageNews/PageNews";
 import PageTaxes from "../pages/pageTaxes/PageTaxes";
 import Income from "./IncomeToUkraine";
+import NewOrder from "./NewOrderForm";
+
 const menus = [
   ["біржі", "marketWorld"],
   ["україна", "marketUkraine"],
